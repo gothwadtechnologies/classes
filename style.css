@@ -1,1 +1,50 @@
+/* --- GLOBAL VARIABLES (Material Design Feel) --- */
+:root {
+    --primary-color: #6200EE;   /* Purple (Android Material Default) */
+    --primary-variant: #3700B3;
+    --background-color: #F8F9FA;
+    --surface-color: #FFFFFF;
+    --text-primary: #121212;
+    --text-secondary: #757575;
+    --error-color: #B00020;
+    
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
 
+/* --- RESET & APP FEEL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Touch highlight disable for Native feel */
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--font-main);
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    overflow: hidden; /* Main window scroll nahi hogi, sirf screens hongi */
+    user-select: none; /* Text selection disable by default (like app) */
+}
+
+/* --- THE SHELL CONTAINER --- */
+#app-root {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-y: auto; /* Screen ke content ko scroll hone dega */
+    overflow-x: hidden;
+}
+
+/* Smooth fade-in animation for screens */
+.screen-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
