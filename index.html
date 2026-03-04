@@ -1,23 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- Ye meta tag app jaisa look dega aur zoom hone se rokega -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#ffffff"> <!-- Android status bar color -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gothwad Technologies | IT Company & Software Solutions</title>
     
-    <title>Classesx</title>
-    
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gothwad Technologies is a premier IT company specializing in custom software development, mobile apps, and enterprise solutions. Our mission is to build a Self-Reliant India through world-class engineering and innovation." />
+    <meta name="keywords" content="Gothwad Technologies, IT Company, Software Solutions, Custom Software Development, Mobile App Development, Self-Reliant India, Atmanirbhar Bharat, GTech, Enterprise Software" />
+    <meta name="author" content="Gothwad Technologies" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://gothwadtechnologies.com/" />
+
+    <!-- Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Gothwad Technologies",
+      "url": "https://gothwadtechnologies.com/",
+      "description": "Premier IT Company & Software Solutions provider focused on building a Self-Reliant India.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Gothwad Technologies",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://i.ibb.co/KxxyJK63/IMG-20260215-091905-778.webp"
+        }
+      }
+    }
+    </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gothwadtechnologies.com/" />
+    <meta property="og:title" content="Gothwad Technologies | IT Company & Software Solutions" />
+    <meta property="og:description" content="Custom software development and enterprise solutions. Building a Self-Reliant India through elite engineering." />
+    <meta property="og:image" content="https://i.ibb.co/KxxyJK63/IMG-20260215-091905-778.webp" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://gothwadtechnologies.com/" />
+    <meta property="twitter:title" content="Gothwad Technologies | IT Company & Software Solutions" />
+    <meta property="twitter:description" content="Custom software development and enterprise solutions. Building a Self-Reliant India through elite engineering." />
+    <meta property="twitter:image" content="https://i.ibb.co/KxxyJK63/IMG-20260215-091905-778.webp" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="https://i.ibb.co/KxxyJK63/IMG-20260215-091905-778.webp" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/KxxyJK63/IMG-20260215-091905-778.webp" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-color: #f8fafc;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        color: #1e293b;
+        background-color: var(--bg-color);
+        /* Hide scrollbar for cleaner look */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-x: hidden;
+      }
+      body::-webkit-scrollbar {
+        display: none;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+      }
+
+      /* Premium Shining Background Effect */
+      .shimmer-bg {
+        background: radial-gradient(circle at 50% -20%, #ffffff 0%, #f1f5f9 100%);
+        position: relative;
+      }
+      .shimmer-bg::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(at 0% 0%, rgba(0, 86, 179, 0.03) 0, transparent 50%), 
+          radial-gradient(at 50% 0%, rgba(219, 234, 254, 0.3) 0, transparent 50%), 
+          radial-gradient(at 100% 0%, rgba(0, 86, 179, 0.03) 0, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+
+      .royal-blue-gradient {
+        background: linear-gradient(135deg, #0056B3 0%, #004494 100%);
+      }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-BhIZISoh.js"></script>
 </head>
-<body>
-
-    <!-- Hamari saari screens is DIV ke andar aayengi -->
-    <div id="app-root"></div>
-
-    <!-- Main Logic -->
-    <script type="module" src="main.js"></script>
-    <!-- Firebase config ko include karenge baad me jab setup karenge -->
+  <body class="shimmer-bg">
+    <div id="root"></div>
 </body>
 </html>

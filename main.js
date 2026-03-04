@@ -1,65 +1,83 @@
 // main.js
+import { auth, db } from './server/firebase-config.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { ref, get } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
 const appRoot = document.getElementById('app-root');
 
 // --- ROUTER FUNCTION (Screen Switcher) ---
 async function navigateTo(screenName) {
     try {
-        // 1. Screen ki HTML file fetch karo
         const response = await fetch(`./screens/${screenName}.html`);
-        
-        if (!response.ok) {
-            throw new Error(`Screen ${screenName} not found!`);
-        }
+        if (!response.ok) throw new Error(`Screen ${screenName} not found!`);
         
         const html = await response.text();
         
-        // 2. Smooth Transition (Blink prevent karne ke liye animation reset)
         appRoot.classList.remove('screen-fade-in');
         void appRoot.offsetWidth; // Trigger reflow
         
-        // 3. HTML inject karo
         appRoot.innerHTML = html;
         appRoot.classList.add('screen-fade-in');
 
-        // 4. Injected HTML ke andar ki JS ko run karo
         executeScripts(appRoot);
-
     } catch (error) {
         console.error("Navigation Error:", error);
-        appRoot.innerHTML = `<h2 style="color:red; text-align:center; margin-top:50px;">Error Loading Screen</h2>`;
+        appRoot.innerHTML = `<h2 style="text-align:center; margin-top:50px;">Error Loading Screen</h2>`;
     }
 }
 
-// --- SCRIPT EXECUTOR (Very Important) ---
-// innerHTML se aayi hui JS apne aap run nahi hoti, isliye ye function zaruri hai
+// --- SCRIPT EXECUTOR ---
 function executeScripts(container) {
     const scripts = container.querySelectorAll('script');
     scripts.forEach(oldScript => {
         const newScript = document.createElement('script');
-        
-        // Purane script ke saare attributes (src, type etc) copy karo
-        Array.from(oldScript.attributes).forEach(attr => {
-            newScript.setAttribute(attr.name, attr.value);
-        });
-        
-        // Script ka code copy karo
+        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
         newScript.textContent = oldScript.textContent;
-        
-        // Purane script ko naye se replace karke browser ko force karo JS run karne ke liye
+        // Agar module type script hai toh use waisa hi rehne do
+        if(oldScript.type === 'module') newScript.type = 'module';
         oldScript.parentNode.replaceChild(newScript, oldScript);
     });
 }
 
-// --- APP INITIALIZATION ---
+// --- FIREBASE AUTH STATE CHECKER (Smart Routing) ---
 function initApp() {
-    // Abhi ke liye seedha Splash Screen load karte hain.
-    // Baad me yaha Firebase Auth state check karenge (Login hai ya nahi).
-    navigateTo('splash');
+    // Jab tak Firebase auth status check kar raha hai, ek chota loading text dikha do
+    appRoot.innerHTML = `<div style="display:flex; justify-content:center; align-items:center; height:100vh; font-size:1.2rem; color:#6200EE; font-weight:bold;">Checking Auth...</div>`;
+
+    // Ye continuously dekhega ki user login hua ya logout
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            console.log("User Logged In:", user.uid);
+            // User logged in hai -> Ab uska role check karo (Admin ya Student)
+            try {
+                const userRef = ref(db, 'users/' + user.uid);
+                const snapshot = await get(userRef);
+                
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    if (userData.role === 'admin') {
+                        navigateTo('adminhome');
+                    } else {
+                        navigateTo('userhome');
+                    }
+                } else {
+                    // Agar DB me role nahi mila, by default userhome bhej do
+                    navigateTo('userhome');
+                }
+            } catch (error) {
+                console.error("Error fetching role:", error);
+                navigateTo('userhome');
+            }
+        } else {
+            console.log("User Not Logged In. Going to Login Screen.");
+            // User login nahi hai -> Login screen par bhejo
+            navigateTo('login');
+        }
+    });
 }
 
-// Jab page load ho jaye toh App start karo
-window.addEventListener('DOMContentLoaded', initApp);
-
-// navigateTo function ko global bana do taaki har screen isko call kar sake
+// Make navigateTo global
 window.navigateTo = navigateTo;
+
+// Start the app
+window.addEventListener('DOMContentLoaded', initApp);
