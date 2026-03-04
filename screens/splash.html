@@ -1,0 +1,35 @@
+<!-- CSS for Splash -->
+<style>
+    .splash-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: var(--primary-color);
+        color: var(--surface-color);
+    }
+    .splash-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+</style>
+
+<!-- HTML for Splash -->
+<div class="splash-container">
+    <div class="splash-title">Classesx</div>
+    <p>Loading...</p>
+</div>
+
+<!-- JS for Splash -->
+<script>
+    (function() {
+        console.log("Splash Screen Init!");
+        
+        // 2 second baad login screen par redirect (Bina reload ke!)
+        setTimeout(() => {
+            window.navigateTo('login');
+        }, 2000);
+    })();
+</script>
