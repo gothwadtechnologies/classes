@@ -5,15 +5,26 @@ Ek seamless, Android-like interface wala educational web-app banana jo HTML, CSS
 
 root/
 ├── index.html           # Main Entry Point (The Shell)
+
 ├── main.js              # Global Logic & Screen Router
+
 ├── style.css            # Global Styles & Design System
+
 ├── screens/             # UI Components (Single File Components)
+
 │   ├── splash.html
-│   ├── login.html
+
+│   ├── lin.html
+
 │   ├── batch.html
+
 │   └── ...
+=[p]
 ├── server/              # Backend Config
+
+
 │   └── firebaseConfig.js
+
 └── assets/              # Media (Images, Icons, Lottie)
 
 
