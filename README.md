@@ -1,7 +1,7 @@
-Goal: Ek seamless, Android-like interface wala educational web-app banana jo HTML, CSS, aur JS ka use kare, par feel ekdum native app jaisi de.
+Ek seamless, Android-like interface wala educational web-app banana jo HTML, CSS, aur JS ka use kare, par feel ekdum native app jaisi de.
 
-📂 Folder Structure (The Blueprint)
-Plaintext
+📂 Folder Structure 
+(The Blueprint)
 
 root/
 ├── index.html           # Main Entry Point (The Shell)
@@ -15,7 +15,10 @@ root/
 ├── server/              # Backend Config
 │   └── firebaseConfig.js
 └── assets/              # Media (Images, Icons, Lottie)
+
+
 🛠 Technical Architecture & Rules
+
 1. The "Shell" Concept (index.html)
 Saara content ek hi page par load hoga. Index file mein ek <div id="app-root"></div> hoga jaha saari screens dynamic tarike se "inject" ki jayengi.
 
